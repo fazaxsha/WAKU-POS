@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── GLOBAL ─────────────────────────────── */
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #F4F6F8;
+    color: #0F172A;
+  }
+}
+
+@layer components {
+
+  /* ── SIDEBAR ─────────────────────────── */
+  .hidden-scrollbar::-webkit-scrollbar { display: none; }
+  .hidden-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* ── CARD ───────────────────────────── */
+  .card {
+    @apply bg-white border border-slate-100 rounded-2xl shadow-sm;
+  }
+  .card-header-custom {
+    @apply px-6 py-4 border-b border-slate-100 flex items-center justify-between;
+  }
+
+  /* ── STAT CARD ──────────────────────── */
+  .stat-card {
+    @apply bg-white border border-slate-100 rounded-2xl p-6 shadow-sm flex items-start gap-4;
+  }
+
+  /* ── DATA TABLE ─────────────────────── */
+  .table {
+    @apply w-full text-sm text-left border-collapse;
+  }
+  .table thead th {
+    @apply text-xs font-semibold uppercase tracking-wider text-slate-500
+           bg-slate-50 border-b border-slate-100 px-5 py-3.5 whitespace-nowrap;
+  }
+  .table tbody td {
+    @apply px-5 py-3.5 text-slate-700 border-b border-slate-50 align-middle;
+  }
+  .table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+  .table tbody tr:hover td {
+    @apply bg-slate-50/60;
+  }
+  .table-responsive {
+    @apply overflow-x-auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── BADGES ─────────────────────────── */
+  .badge-role {
+    @apply text-[10px] font-semibold py-0.5 px-2.5 rounded-full uppercase tracking-wider
+           font-mono inline-block;
+  }
+  .badge-active   { @apply bg-emerald-50 text-emerald-700; }
+  .badge-inactive { @apply bg-red-50 text-red-700; }
+  .badge-owner    { @apply bg-cyan-50 text-cyan-700; }
+  .badge-admin    { @apply bg-blue-50 text-blue-700; }
+  .badge-kasir    { @apply bg-green-50 text-green-700; }
+
+  /* ── BUTTONS ─────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           px-4 py-2 h-9 rounded-xl text-sm font-semibold text-white
+           bg-slate-900 hover:bg-slate-800 transition-colors
+           shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2;
+  }
+  /* Legacy name ".btn-amber" — actually renders teal. Use ".btn-teal" for new code. */
+  .btn-amber,
+  .btn-teal {
+    @apply inline-flex items-center justify-center gap-2
+           px-4 py-2 h-9 rounded-xl text-sm font-semibold text-white
+           bg-teal-600 hover:bg-teal-700 transition-colors
+           shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2;
+  }
+  .btn-outline-sm {
+    @apply inline-flex items-center justify-center gap-1.5
+           px-3.5 py-2 rounded-lg text-xs font-semibold
+           text-slate-600 bg-white border border-slate-200
+           hover:border-teal-400 hover:text-teal-700
+           transition-all focus:outline-none;
+  }
+  .topbar-btn {
+    @apply w-8 h-8 rounded-lg inline-flex items-center justify-center
+           text-slate-400 bg-white border border-slate-200
+           hover:text-teal-700 hover:bg-teal-50 hover:border-teal-200
+           transition-all focus:outline-none cursor-pointer;
+  }
+
+  /* ── FORM CONTROLS ──────────────────── */
+  .form-control {
+    @apply w-full px-3.5 py-2.5 text-sm text-slate-900 bg-white
+           border border-slate-200 rounded-xl
+           focus:border-teal-400 focus:ring-2 focus:ring-teal-100
+           placeholder:text-slate-400 outline-none transition-all;
+  }
+  .form-label {
+    @apply block text-sm font-semibold text-slate-700 mb-1.5;
+  }
+  .form-select {
+    @apply w-full px-3.5 py-2.5 text-sm text-slate-900 bg-white
+           border border-slate-200 rounded-xl
+           focus:border-teal-400 focus:ring-2 focus:ring-teal-100
+           outline-none transition-all;
+  }
+  .form-text {
+    @apply text-xs text-slate-500 mt-1.5;
+  }
+  .invalid-feedback {
+    @apply text-xs text-red-600 mt-1;
+  }
+
+  /* ── CARD TITLE ─────────────────────── */
+  .card-title-sm {
+    @apply text-sm font-semibold text-slate-900;
+  }
+
+  /* ── ALERTS ─────────────────────────── */
+  .alert {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium;
+  }
+  .alert-success { @apply bg-emerald-50 text-emerald-800 border border-emerald-200; }
+  .alert-danger  { @apply bg-red-50 text-red-800 border border-red-200; }
+  .alert-warning { @apply bg-amber-50 text-amber-800 border border-amber-200; }
+  .alert-info    { @apply bg-blue-50 text-blue-800 border border-blue-200; }
+  .alert .alert-close {
+    @apply ml-auto text-inherit opacity-50 hover:opacity-100 bg-transparent
+           border-0 cursor-pointer text-lg leading-none;
+  }
+
+  /* ── PAGINATION ─────────────────────── */
+  .pagination {
+    @apply flex flex-wrap gap-1 list-none p-0 m-0;
+  }
+  .pagination li a,
+  .pagination li span {
+    @apply inline-flex items-center justify-center min-w-[32px] h-8 px-2
+           border border-slate-200 rounded-lg text-xs font-medium text-slate-600
+           no-underline transition-all;
+  }
+  .pagination li a:hover {
+    @apply border-teal-400 text-teal-700 bg-teal-50;
+  }
+  .pagination li.active span {
+    @apply bg-teal-600 text-white border-teal-600;
+  }
+  .pagination li.disabled span {
+    @apply opacity-40 cursor-default;
+  }
+
+  /* ── ANIMATIONS ─────────────────────── */
+  .fade-in-up {
+    animation: fadeInUp 0.3s ease-out forwards;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
