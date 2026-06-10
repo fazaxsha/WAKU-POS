@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'WAKU-POS') }}</title>
-        <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+        <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
         {{-- Fonts (preconnect + preload for faster LCP) --}}
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,9 +27,7 @@
                 <div class="w-full max-w-md">
                     <!-- Logo / Brand -->
                     <div class="mb-10 flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-teal-600/30">
-                            🌤️
-                        </div>
+                        <img src="{{ asset('images/logo.png') }}" alt="Logo WAKU-POS" class="h-10 w-auto object-contain drop-shadow-md">
                         <div>
                             <div class="text-xl font-bold tracking-tight text-slate-900">{{ config('app.name', 'WAKU-POS') }}</div>
                             <div class="text-xs font-mono text-slate-500 uppercase tracking-widest">Retail Management</div>
@@ -50,7 +48,7 @@
 
                 <div class="relative z-10 text-center max-w-lg">
                     <h2 class="text-3xl font-bold text-white mb-6 leading-tight">Selamat Datang di WAKU-POS 🌤️</h2>
-                    <p class="text-teal-100 text-lg leading-relaxed">Standar baru untuk operasional toko Anda!</p>
+                    <p class="text-teal-100 text-lg leading-relaxed">Dikembangkan oleh <span class="font-bold text-white tracking-wide">FLUCAN Team</span></p>
                 </div>  
             </div>
         </div>

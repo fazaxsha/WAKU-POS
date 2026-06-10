@@ -1,8 +1,6 @@
 <aside id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-white border-r border-slate-200 flex flex-col z-50 transform -translate-x-full md:translate-x-0 transition-transform duration-300 overflow-y-auto hidden-scrollbar">
     <div class="flex items-center gap-3 p-5 border-b border-slate-100">
-        <div class="w-9 h-9 rounded-lg bg-teal-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-teal-600/20">
-            🌤️
-        </div>
+        <img src="{{ asset('images/logo.png') }}" alt="Logo WAKU-POS" class="h-9 w-auto object-contain drop-shadow-sm">
         <div>
             <div class="text-sm font-bold text-slate-900">{{ config('app.name', 'WAKU-POS') }}</div>
             <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Retail Management</div>

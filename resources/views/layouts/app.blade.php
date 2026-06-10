@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title', 'Dashboard') — {{ config('app.name', 'WAKU-POS') }}</title>
-  <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+  <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
   {{-- Google Fonts (preconnect + preload for faster LCP) --}}
   <link rel="preconnect" href="https://fonts.googleapis.com">

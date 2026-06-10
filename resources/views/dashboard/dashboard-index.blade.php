@@ -284,10 +284,12 @@
         {{ now()->subDays(6)->format('d M') }} – {{ now()->format('d M Y') }}
       </span>
     </div>
-    <div class="p-5 relative" x-data="{ chartLoaded: false }">
-      <div x-show="!chartLoaded" class="skeleton h-[220px] w-full rounded-xl"></div>
-      <canvas x-show="chartLoaded" x-cloak id="revenueChart" height="88"
-              x-init="$nextTick(() => { setTimeout(() => chartLoaded = true, 300) })"></canvas>
+    <div class="p-5" x-data="{ chartLoaded: false }">
+      <div x-show="!chartLoaded" class="skeleton h-[200px] w-full rounded-xl"></div>
+      <div class="relative h-[200px] w-full" x-show="chartLoaded" x-cloak>
+        <canvas id="revenueChart"
+                x-init="$nextTick(() => { setTimeout(() => chartLoaded = true, 300) })"></canvas>
+      </div>
     </div>
   </div>
 
@@ -519,6 +521,7 @@
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { display: false },

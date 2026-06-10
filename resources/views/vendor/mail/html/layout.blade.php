@@ -41,7 +41,7 @@ width: 100% !important;
 <tr>
 <td class="content-cell">
 <div style="text-align: center; margin-bottom: 20px;">
-<img src="https://placehold.co/150x50/0f172a/ffffff?text=LOGO" alt="{{ config('app.name') }}" style="max-height: 50px;">
+<img src="{{ isset($message) && method_exists($message, 'embed') ? $message->embed(public_path('images/logo.png')) : asset('images/logo.png') }}" alt="{{ config('app.name') }}" style="max-height: 50px;">
 </div>
 {!! Illuminate\Mail\Markdown::parse($slot) !!}
 
