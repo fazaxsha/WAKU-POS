@@ -88,7 +88,7 @@
                         <span
                             class="flex items-center px-3 border border-r-0 border-slate-200 rounded-l-lg bg-white text-sm text-gray-500">Rp</span>
                         <input type="number" name="sell_price"
-                            value="{{ old('sell_price', $product->sell_price ?? '') }}"
+                            value="{{ old('sell_price', isset($product->sell_price) ? (float) $product->sell_price : '') }}"
                             class="form-control @error('sell_price') is-invalid @enderror" style="font-size:13.5px;"
                             placeholder="0" min="0" step="100">
                         @error('sell_price')
@@ -103,7 +103,7 @@
                         <span
                             class="flex items-center px-3 border border-r-0 border-slate-200 rounded-l-lg bg-white text-sm text-gray-500">Rp</span>
                         <input type="number" name="buy_price"
-                            value="{{ old('buy_price', $product->buy_price ?? '') }}"
+                            value="{{ old('buy_price', isset($product->buy_price) ? (float) $product->buy_price : '') }}"
                             class="form-control @error('buy_price') is-invalid @enderror" style="font-size:13.5px;"
                             placeholder="0" min="0" step="100">
                         @error('buy_price')
@@ -117,7 +117,7 @@
                         <span
                             class="flex items-center px-3 border border-r-0 border-slate-200 rounded-l-lg bg-white text-sm text-gray-500">Rp</span>
                         <input type="number" name="wholesale_price"
-                            value="{{ old('wholesale_price', $product->wholesale_price ?? '') }}"
+                            value="{{ old('wholesale_price', isset($product->wholesale_price) ? (float) $product->wholesale_price : '') }}"
                             class="form-control @error('wholesale_price') is-invalid @enderror"
                             style="font-size:13.5px;" placeholder="Opsional" min="0" step="100">
                         @error('wholesale_price')
@@ -128,10 +128,42 @@
                 <div>
                     <label class="form-label" style="font-size:13px; font-weight:500;">Min Qty Grosir</label>
                     <input type="number" name="wholesale_min_qty"
-                        value="{{ old('wholesale_min_qty', $product->wholesale_min_qty ?? '') }}"
+                        value="{{ old('wholesale_min_qty', isset($product->wholesale_min_qty) ? (float) $product->wholesale_min_qty : '') }}"
                         class="form-control @error('wholesale_min_qty') is-invalid @enderror"
                         style="font-size:13.5px;" placeholder="Opsional" min="0" step="0.001">
                     @error('wholesale_min_qty')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div>
+                    @if (!$product)
+                        <label class="form-label" style="font-size:13px; font-weight:500;">Stok Awal <span
+                                class="text-red-500">*</span></label>
+                        <input type="number" name="stock_qty" value="{{ old('stock_qty', isset($product->stock_qty) ? (float) $product->stock_qty : 0) }}"
+                            class="form-control @error('stock_qty') is-invalid @enderror" style="font-size:13.5px;"
+                            placeholder="0" min="0" step="any">
+                        @error('stock_qty')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    @else
+                        <label class="form-label text-slate-500" style="font-size:13px; font-weight:500;">Stok Saat Ini <i class="bi bi-lock-fill ml-1 text-slate-400"></i></label>
+                        <div class="relative">
+                            <input type="text" class="form-control bg-slate-50 border-slate-200 text-slate-500 cursor-not-allowed" style="font-size:13.5px;"
+                                value="{{ (float) $product->stock_qty }} {{ $product->unit }}" disabled readonly>
+                            <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                                <i class="bi bi-info-circle text-slate-400"></i>
+                            </div>
+                        </div>
+                        <div class="form-text text-slate-400 mt-1" style="font-size:11px;">Stok hanya bisa diupdate via POS, Pembelian, atau Stock Opname.</div>
+                    @endif
+                </div>
+                <div>
+                    <label class="form-label" style="font-size:13px; font-weight:500;">Stok Minimum <span
+                            class="text-red-500">*</span></label>
+                    <input type="number" name="stock_min" value="{{ old('stock_min', isset($product->stock_min) ? (float) $product->stock_min : 5) }}"
+                        class="form-control @error('stock_min') is-invalid @enderror" style="font-size:13.5px;"
+                        placeholder="5" min="0" step="any">
+                    @error('stock_min')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

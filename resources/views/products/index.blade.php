@@ -129,10 +129,10 @@
                             <td>
                                 <div class="flex items-center justify-end gap-1.5">
                                     @can('product.edit')
-                                        <button type="button" class="topbar-btn" title="Update Stok"
+                                        {{-- <button type="button" class="topbar-btn" title="Update Stok"
                                             onclick="document.getElementById('stockModal{{ $product->id }}').showModal()">
                                             <i class="bi bi-layers text-xs"></i>
-                                        </button>
+                                        </button> --}}
                                         <a href="{{ route('products.edit', $product) }}" class="topbar-btn" title="Edit">
                                             <i class="bi bi-pencil text-xs"></i>
                                         </a>

@@ -17,13 +17,24 @@ return new class extends Migration {
         }
 
         // Backfill: isi buy_price dari products.buy_price untuk data yang sudah ada
-        DB::statement('
-            UPDATE transaction_items ti
-            SET buy_price = p.buy_price
-            FROM products p
-            WHERE ti.product_id = p.id
-            AND ti.buy_price = 0
-        ');
+        if (DB::getDriverName() === 'sqlite') {
+            DB::statement('
+                UPDATE transaction_items
+                SET buy_price = COALESCE((
+                    SELECT buy_price FROM products
+                    WHERE products.id = transaction_items.product_id
+                ), 0)
+                WHERE buy_price = 0
+            ');
+        } else {
+            DB::statement('
+                UPDATE transaction_items ti
+                SET buy_price = p.buy_price
+                FROM products p
+                WHERE ti.product_id = p.id
+                AND ti.buy_price = 0
+            ');
+        }
     }
 
     public function down(): void
